@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="submit">submit</string>
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option3">option3</string>
+    <string name="option4">option4</string>
+    <string name="start">start</string>
+    <string name="guess_the_day">Guess the day</string>
+    <string name="generate">GENERATE</string>
+    <string name="tuesday_text">TUESDAY</string>
+    <string name="thursday_text">THURSDAY</string>
+    <string name="format_yyyy_dd_mm">Format : YYYY/DD/MM</string>
+    <string name="SCORE">SCORE</string>
+    <string name="score">score=</string>
+</resources>
