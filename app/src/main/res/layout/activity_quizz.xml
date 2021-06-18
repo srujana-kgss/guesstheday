@@ -24,7 +24,8 @@
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.114"
+        android:freezesText="true"/>
 
     <Button
         android:id="@+id/generatebutton"
@@ -59,7 +60,8 @@
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.44"
+        android:freezesText="true"/>
 
     <Button
         android:id="@+id/Button2"
@@ -80,7 +82,8 @@
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.55"
+        android:freezesText="true"/>
 
     <Button
         android:id="@+id/Button3"
@@ -101,7 +104,8 @@
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.66"
+        android:freezesText="true"/>
 
     <Button
         android:id="@+id/Button4"
@@ -122,7 +126,8 @@
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintVertical_bias="0.77"
+        android:freezesText="true"/>
 
     <TextView
         android:id="@+id/format"
@@ -137,7 +142,8 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
+        app:layout_constraintVertical_bias="0.266"
+        android:freezesText="true"/>
 
     <TextView
         android:id="@+id/scoretext"
@@ -152,7 +158,8 @@
         app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.058"
+        android:freezesText="true"/>
 
     <TextView
         android:id="@+id/timer"
@@ -166,7 +173,8 @@
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.057"
+        android:freezesText="true"/>
 
 
 

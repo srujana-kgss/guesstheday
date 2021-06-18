@@ -25,9 +25,9 @@ public class quizz extends AppCompatActivity {
     boolean x=(false);
     boolean y;
 
-    int score=0;
+    int score=0,day1,day2,day3,year,dayofyear;
     int secondsremaining = 120;
-    int milliseconds=120000;
+    long milliseconds=120000;
 
     Timer backgroundchanger;
 
@@ -96,7 +96,6 @@ public class quizz extends AppCompatActivity {
                 y=true;
                 timers.start();
                 scoretext.setText("SCORE="+score);
-                generatebutton.setText("");
                 question.setText(generateRandomDate());
                 format.setText("Format = YYYY/DD/MM");
                generatebutton.setVisibility(View.INVISIBLE);
@@ -109,9 +108,9 @@ public class quizz extends AppCompatActivity {
 
     private String generateRandomDate() {
         // for getting unique random options
-        int day1 = randBetween(0,5);
-        int day2 = randBetween(0,5);
-        int day3 =randBetween(0,5);
+         day1 = randBetween(0,5);
+         day2 = randBetween(0,5);
+        day3 =randBetween(0,5);
         while (day1==day2)
         {day2 = randBetween(0, 5);}
         while (day1==day3 || day2==day3)
@@ -119,9 +118,9 @@ public class quizz extends AppCompatActivity {
 
         // for random date
             GregorianCalendar gc = new GregorianCalendar();
-            int year = randBetween(1900, 2050);
+             year = randBetween(1900, 2050);
             gc.set(GregorianCalendar.YEAR, year);
-            int dayofyear = randBetween(1, gc.getActualMaximum(GregorianCalendar.DAY_OF_YEAR));
+            dayofyear = randBetween(1, gc.getActualMaximum(GregorianCalendar.DAY_OF_YEAR));
             gc.set(GregorianCalendar.DAY_OF_YEAR, dayofyear);
 
             if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 1){
@@ -540,8 +539,14 @@ public class quizz extends AppCompatActivity {
         outState.putString("scoretext",scoretext.getText().toString());
         outState.putString("timer",timer.getText().toString());
         outState.putString("generate",generatebutton.getText().toString());
-        outState.putInt("milliseconds",milliseconds);
+        outState.putLong("milliseconds",milliseconds);
         outState.putBoolean("y",y);
+        outState.putInt("secondsremaining",secondsremaining);
+        outState.putInt("day1",day1);
+        outState.putInt("day2",day2);
+        outState.putInt("day3",day3);
+        outState.putInt("year",year);
+        outState.putInt("dayofyear",dayofyear);
 
 
         super.onSaveInstanceState(outState);
@@ -559,11 +564,19 @@ public class quizz extends AppCompatActivity {
         scoretext.setText(savedInstanceState.getString("scoretext"));
         timer.setText(savedInstanceState.getString("timer"));
         generatebutton.setText(savedInstanceState.getString("generate"));
-        milliseconds=savedInstanceState.getInt("milliseconds");
+        secondsremaining = savedInstanceState.getInt("secondsremaining");
+        milliseconds = savedInstanceState.getLong("milliseconds");
+        day1 = savedInstanceState.getInt("day1");
+        day2 = savedInstanceState.getInt("day2");
+        day3 = savedInstanceState.getInt("day3");
+        year = savedInstanceState.getInt("year");
+        dayofyear = savedInstanceState.getInt("dayofyear");
+
         y=savedInstanceState.getBoolean("y");
         if(y){
             generatebutton.setVisibility(View.INVISIBLE);
-
+            timers.start();
+            generateRandomDate();
         }
 
 

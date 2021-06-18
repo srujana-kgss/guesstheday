@@ -21,7 +21,7 @@ public class scoreactivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("PREFS", 0);
         lastscore = preferences.getInt("lastscore", 0);
         highscore = preferences.getInt("highscore", 0);
-        highscore = highscore-1000;
+
 
         if (lastscore > highscore) {
             highscore = lastscore;
