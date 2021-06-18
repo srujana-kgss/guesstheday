@@ -23,6 +23,7 @@ public class quizz extends AppCompatActivity {
     ConstraintLayout currentlayout;
     Vibrator vibrator;
     boolean x=(false);
+    boolean y;
 
     int score=0;
     int secondsremaining = 120;
@@ -92,6 +93,7 @@ public class quizz extends AppCompatActivity {
         generatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                y=true;
                 timers.start();
                 scoretext.setText("SCORE="+score);
                 generatebutton.setText("");
@@ -121,6 +123,7 @@ public class quizz extends AppCompatActivity {
             gc.set(GregorianCalendar.YEAR, year);
             int dayofyear = randBetween(1, gc.getActualMaximum(GregorianCalendar.DAY_OF_YEAR));
             gc.set(GregorianCalendar.DAY_OF_YEAR, dayofyear);
+
             if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 1){
                 option1.setText("SUNDAY");option2.setText(array[day1]);option3.setText(array[day2]);option4.setText(array[day3]);
                 option1.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +146,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) {  question.setText(generateRandomDate());vibrator.vibrate(300);
                       score--;x=(true); currentlayout.setBackgroundColor(Color.RED);
                     scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -155,6 +159,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -167,6 +172,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -199,6 +205,7 @@ public class quizz extends AppCompatActivity {
                         score--;x=(true);
                         currentlayout.setBackgroundColor(Color.RED);
                      scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -212,6 +219,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED);
                        scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -224,6 +232,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true);currentlayout.setBackgroundColor(Color.RED);
                        scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -256,6 +265,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true);currentlayout.setBackgroundColor(Color.RED);
                       scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -268,6 +278,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                        score--;x=(true); currentlayout.setBackgroundColor(Color.RED);
                        scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -280,6 +291,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED);
                      scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -309,6 +321,7 @@ public class quizz extends AppCompatActivity {
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED);
                         scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -320,6 +333,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -332,6 +346,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--; x=(true); currentlayout.setBackgroundColor(Color.RED);scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -360,6 +375,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                        score--;x=(true); currentlayout.setBackgroundColor(Color.RED);scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -372,6 +388,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {  question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true);  currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -383,6 +400,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {  question.setText(generateRandomDate());vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -413,6 +431,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate()); vibrator.vibrate(300);
                        score--; x=(true);currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -425,6 +444,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {  question.setText(generateRandomDate());vibrator.vibrate(300);
                        score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -436,6 +456,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                        score--;x=(true);  currentlayout.setBackgroundColor(Color.RED);scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -463,6 +484,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate()); vibrator.vibrate(300);
                         score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -474,6 +496,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate());vibrator.vibrate(300);
                        score--;x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -486,6 +509,7 @@ public class quizz extends AppCompatActivity {
                     @Override
                     public void onClick(View v) { question.setText(generateRandomDate()); vibrator.vibrate(300);
                         score--; x=(true); currentlayout.setBackgroundColor(Color.RED); scoretext.setText("SCORE="+score);
+                        backgroundchanger = new Timer();
                         backgroundchanger.schedule((new TimerTask() {
                             @Override
                             public void run() {
@@ -517,6 +541,7 @@ public class quizz extends AppCompatActivity {
         outState.putString("timer",timer.getText().toString());
         outState.putString("generate",generatebutton.getText().toString());
         outState.putInt("milliseconds",milliseconds);
+        outState.putBoolean("y",y);
 
 
         super.onSaveInstanceState(outState);
@@ -535,6 +560,11 @@ public class quizz extends AppCompatActivity {
         timer.setText(savedInstanceState.getString("timer"));
         generatebutton.setText(savedInstanceState.getString("generate"));
         milliseconds=savedInstanceState.getInt("milliseconds");
+        y=savedInstanceState.getBoolean("y");
+        if(y){
+            generatebutton.setVisibility(View.INVISIBLE);
+
+        }
 
 
 
