@@ -24,6 +24,7 @@ public class quizz extends AppCompatActivity {
     Vibrator vibrator;
     boolean x=(false);
     boolean y;
+    int weekno;
 
     int score=0,day1,day2,day3,year,dayofyear;
     int secondsremaining = 120;
@@ -54,7 +55,6 @@ public class quizz extends AppCompatActivity {
                     editor.putInt("lastscore",score);
                     editor.apply();
                 Intent intent=new Intent(quizz.this,scoreactivity.class);
-                startActivity(intent);
                 timers.cancel();
                 option1.setVisibility(View.INVISIBLE);
                     option2.setVisibility(View.INVISIBLE);
@@ -64,7 +64,7 @@ public class quizz extends AppCompatActivity {
                     scoretext.setVisibility(View.INVISIBLE);
                     timer.setVisibility(View.INVISIBLE);
                     format.setVisibility(View.INVISIBLE);
-
+                    startActivity(intent);
             }
 
         }
@@ -122,8 +122,8 @@ public class quizz extends AppCompatActivity {
             gc.set(GregorianCalendar.YEAR, year);
             dayofyear = randBetween(1, gc.getActualMaximum(GregorianCalendar.DAY_OF_YEAR));
             gc.set(GregorianCalendar.DAY_OF_YEAR, dayofyear);
-
-            if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 1){
+                    weekno   =gc.get(GregorianCalendar.DAY_OF_WEEK);
+            if (weekno == 1){
                 option1.setText("SUNDAY");option2.setText(array[day1]);option3.setText(array[day2]);option4.setText(array[day3]);
                 option1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -181,7 +181,7 @@ public class quizz extends AppCompatActivity {
 
 
                     }});
-            }else if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 2){
+            }else if (weekno == 2){
 
                 option2.setText("MONDAY");option1.setText(array1[day1]);option3.setText(array1[day2]);option4.setText(array1[day3]);
                 option2.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +240,7 @@ public class quizz extends AppCompatActivity {
                         }),200);
                     }});
 
-            }else if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 3){
+            }else if (weekno == 3){
 
                 option3.setText(R.string.tuesday_text);option1.setText(array2[day1]);option2.setText(array2[day2]);option4.setText(array2[day3]);
                 option3.setOnClickListener(new View.OnClickListener() {
@@ -298,7 +298,7 @@ public class quizz extends AppCompatActivity {
                             }
                         }),200);
                     }});
-            }else if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 4){
+            }else if (weekno == 4){
                 option4.setText("WEDNESDAY");option1.setText(array3[day1]);option2.setText(array3[day2]);option3.setText(array3[day3]);
                 option4.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -354,7 +354,7 @@ public class quizz extends AppCompatActivity {
                         }),200);
 
                     }});
-            }else if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 5){
+            }else if (weekno == 5){
                 option1.setText("THURSDAY");option2.setText(array4[day1]);option3.setText(array4[day2]);option4.setText(array4[day3]);
                 option1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -409,7 +409,7 @@ public class quizz extends AppCompatActivity {
 
                     }});
 
-            }else if (gc.get(GregorianCalendar.DAY_OF_WEEK) == 6){
+            }else if (weekno == 6){
                 option2.setText("FRIDAY");option1.setText(array5[day1]);option3.setText(array5[day2]);option4.setText(array5[day3]);
                 option2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -529,7 +529,13 @@ public class quizz extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-
+        outState.putStringArray("array",array);
+        outState.putStringArray("array1",array1);
+        outState.putStringArray("array2",array2);
+        outState.putStringArray("array3",array3);
+        outState.putStringArray("array4",array4);
+        outState.putStringArray("array5",array5);
+        outState.putStringArray("array6",array6);
         outState.putString("option1",option1.getText().toString());
         outState.putString("option2",option2.getText().toString());
         outState.putString("option3",option3.getText().toString());
@@ -537,6 +543,7 @@ public class quizz extends AppCompatActivity {
         outState.putString("question",question.getText().toString());
         outState.putString("format",format.getText().toString());
         outState.putString("scoretext",scoretext.getText().toString());
+        outState.putInt("score",score);
         outState.putString("timer",timer.getText().toString());
         outState.putString("generate",generatebutton.getText().toString());
         outState.putLong("milliseconds",milliseconds);
@@ -547,7 +554,7 @@ public class quizz extends AppCompatActivity {
         outState.putInt("day3",day3);
         outState.putInt("year",year);
         outState.putInt("dayofyear",dayofyear);
-
+        outState.putInt("weekno",weekno);
 
         super.onSaveInstanceState(outState);
     }
@@ -570,15 +577,568 @@ public class quizz extends AppCompatActivity {
         day2 = savedInstanceState.getInt("day2");
         day3 = savedInstanceState.getInt("day3");
         year = savedInstanceState.getInt("year");
+        score=savedInstanceState.getInt("score");
         dayofyear = savedInstanceState.getInt("dayofyear");
-
+        weekno=savedInstanceState.getInt("weekno");
+        array =savedInstanceState.getStringArray("array");
+        array1 =savedInstanceState.getStringArray("array1");
+        array2 =savedInstanceState.getStringArray("array2");
+        array3 =savedInstanceState.getStringArray("array3");
+        array4 =savedInstanceState.getStringArray("array4");
+        array5 =savedInstanceState.getStringArray("array5");
+        array6 =savedInstanceState.getStringArray("array6");
         y=savedInstanceState.getBoolean("y");
-        if(y){
+        if(y) {
             generatebutton.setVisibility(View.INVISIBLE);
             timers.start();
-            generateRandomDate();
-        }
 
+            if (weekno == 1) {
+                option1.setText("SUNDAY");
+                option2.setText(array[day1]);
+                option3.setText(array[day2]);
+                option4.setText(array[day3]);
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+
+                    }
+                });
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+
+                    }
+                });
+            } else if (weekno == 2) {
+
+                option2.setText("MONDAY");
+                option1.setText(array1[day1]);
+                option3.setText(array1[day2]);
+                option4.setText(array1[day3]);
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+
+            } else if (weekno == 3) {
+
+                option3.setText(R.string.tuesday_text);
+                option1.setText(array2[day1]);
+                option2.setText(array2[day2]);
+                option4.setText(array2[day3]);
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+            } else if (weekno == 4) {
+                option4.setText("WEDNESDAY");
+                option1.setText(array3[day1]);
+                option2.setText(array3[day2]);
+                option3.setText(array3[day3]);
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+            } else if (weekno == 5) {
+                option1.setText("THURSDAY");
+                option2.setText(array4[day1]);
+                option3.setText(array4[day2]);
+                option4.setText(array4[day3]);
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+
+            } else if (weekno == 6) {
+                option2.setText("FRIDAY");
+                option1.setText(array5[day1]);
+                option3.setText(array5[day2]);
+                option4.setText(array5[day3]);
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                    }
+                });
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+            } else {
+                option1.setText(array6[day1]);
+                option2.setText(array6[day2]);
+                option3.setText(array6[day3]);
+                option4.setText("SATURDAY");
+                option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        score++;
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                        currentlayout.setBackgroundColor(Color.GREEN);
+                        question.setText(generateRandomDate());
+                        scoretext.setText("SCORE=" + score);
+                    }
+                });
+                option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+                option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+
+                    }
+                });
+                option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        question.setText(generateRandomDate());
+                        vibrator.vibrate(300);
+                        score--;
+                        x = (true);
+                        currentlayout.setBackgroundColor(Color.RED);
+                        scoretext.setText("SCORE=" + score);
+                        backgroundchanger = new Timer();
+                        backgroundchanger.schedule((new TimerTask() {
+                            @Override
+                            public void run() {
+                                currentlayout.setBackgroundColor(Color.BLACK);
+                            }
+                        }), 200);
+                    }
+                });
+            }
+        }
 
 
 
