@@ -29,5 +29,9 @@ Button button;
         Intent i = new Intent(this,quizz.class);
         startActivity(i);
     }
+    @Override
+    public void onBackPressed(){
+        return;
+    }
 
 }

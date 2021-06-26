@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ public class scoreactivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("PREFS", 0);
         lastscore = preferences.getInt("lastscore", 0);
-        highscore = preferences.getInt("highscore", 0);
+        highscore = preferences.getInt("highscore", -100);
 
 
         if (lastscore > highscore) {
@@ -36,6 +37,11 @@ public class scoreactivity extends AppCompatActivity {
     }
 
 
+@Override
+public void onBackPressed() {
+    Intent intent = new Intent(scoreactivity.this, MainActivity.class);
+    startActivity(intent);
+}
 
 
 }

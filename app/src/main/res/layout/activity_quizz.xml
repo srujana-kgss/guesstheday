@@ -12,8 +12,9 @@
 
     <TextView
         android:id="@+id/question"
-        android:layout_width="320dp"
-        android:layout_height="86dp"
+        android:layout_width="249dp"
+        android:layout_height="100dp"
+        android:freezesText="true"
         android:text=""
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -21,11 +22,9 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114"
-        android:freezesText="true"/>
+        app:layout_constraintVertical_bias="0.288" />
 
     <Button
         android:id="@+id/generatebutton"
@@ -131,51 +130,50 @@
 
     <TextView
         android:id="@+id/format"
-        android:layout_width="284dp"
-        android:layout_height="70dp"
+        android:layout_width="226dp"
+        android:layout_height="52dp"
+        android:freezesText="true"
         android:text=""
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266"
-        android:freezesText="true"/>
+        app:layout_constraintVertical_bias="0.179" />
 
     <TextView
         android:id="@+id/scoretext"
-        android:layout_width="95dp"
-        android:layout_height="33dp"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
+        android:freezesText="true"
         android:text=""
         android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        android:freezesText="true"/>
+        app:layout_constraintVertical_bias="0.075" />
 
     <TextView
         android:id="@+id/timer"
-        android:layout_width="94dp"
-        android:layout_height="30dp"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
+        android:layout_width="118dp"
+        android:layout_height="53dp"
+        android:freezesText="true"
         android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057"
-        android:freezesText="true"/>
-
+        app:layout_constraintVertical_bias="0.075" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
