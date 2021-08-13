@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.GregorianCalendar;
@@ -17,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class quizz extends AppCompatActivity {
-    TextView question,scoretext,format,timer;
+    TextView question,scoretext,timer;
     Button generatebutton,startbutton;
     Button option1,option2,option3,option4;
     ConstraintLayout currentlayout;
@@ -76,7 +77,8 @@ public class quizz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
         question =  findViewById(R.id.question);option1 = findViewById(R.id.Button1);option2 = findViewById(R.id.Button2);option3 = findViewById(R.id.Button3);
-        option4 = findViewById(R.id.Button4);format=findViewById(R.id.format);
+        option4 = findViewById(R.id.Button4);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         scoretext=findViewById(R.id.scoretext);startbutton=findViewById(R.id.startbutton);
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         generatebutton =  findViewById(R.id.generatebutton);
@@ -92,7 +94,7 @@ public class quizz extends AppCompatActivity {
                 timers.start();
                 scoretext.setText("SCORE="+score);
                 question.setText(generateRandomDate());
-                format.setText("Format = YYYY/DD/MM");
+
                generatebutton.setVisibility(View.INVISIBLE);
 
 
@@ -536,7 +538,7 @@ public class quizz extends AppCompatActivity {
         outState.putString("option3",option3.getText().toString());
         outState.putString("option4",option4.getText().toString());
         outState.putString("question",question.getText().toString());
-        outState.putString("format",format.getText().toString());
+
         outState.putString("scoretext",scoretext.getText().toString());
         outState.putInt("score",score);
         outState.putString("timer",timer.getText().toString());
@@ -562,7 +564,7 @@ public class quizz extends AppCompatActivity {
         option3.setText(savedInstanceState.getString("option3"));
         option4.setText(savedInstanceState.getString("option4"));
         question.setText(savedInstanceState.getString("question"));
-        format.setText(savedInstanceState.getString("format"));
+
         scoretext.setText(savedInstanceState.getString("scoretext"));
         timer.setText(savedInstanceState.getString("timer"));
         generatebutton.setText(savedInstanceState.getString("generate"));

@@ -21,6 +21,7 @@
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:backgroundTint="@color/teal_700"
+
         style="bord"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +32,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="392dp"
-        android:layout_height="683dp"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
         app:srcCompat="@drawable/guessthedayy" />
 
     <Button

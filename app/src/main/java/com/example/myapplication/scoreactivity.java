@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class scoreactivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class scoreactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreactivity);
         textView = findViewById(R.id.textView);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         textView2 = findViewById(R.id.textView2);
 
         SharedPreferences preferences = getSharedPreferences("PREFS", 0);
