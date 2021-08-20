@@ -94,8 +94,7 @@ public class quizz extends AppCompatActivity {
                 timers.start();
                 scoretext.setText("SCORE="+score);
                 question.setText(generateRandomDate());
-
-               generatebutton.setVisibility(View.INVISIBLE);
+                generatebutton.setVisibility(View.INVISIBLE);
 
 
             }

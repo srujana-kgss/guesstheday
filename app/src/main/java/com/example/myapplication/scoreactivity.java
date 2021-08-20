@@ -21,8 +21,8 @@ public class scoreactivity extends AppCompatActivity {
         textView2 = findViewById(R.id.textView2);
 
         SharedPreferences preferences = getSharedPreferences("PREFS", 0);
-        lastscore = preferences.getInt("lastscore", 0);
-        highscore = preferences.getInt("highscore", -100);
+        lastscore = preferences.getInt("lastscore", -1000);
+        highscore = preferences.getInt("highscore", -1000);
 
 
         if (lastscore > highscore) {
@@ -32,9 +32,15 @@ public class scoreactivity extends AppCompatActivity {
             editor.apply();
         }
 
-        textView.setText("recentscore=" + lastscore);
-        textView2.setText("highscore=" + highscore);
+        if(lastscore==-1000&& highscore==-1000){
+            textView.setText("recentscore=null");
+            textView2.setText("highscore=null");
 
+        }else {
+
+            textView.setText("recentscore=" + lastscore);
+            textView2.setText("highscore=" + highscore);
+        }
 
     }
 
